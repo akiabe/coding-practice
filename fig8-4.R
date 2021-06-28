@@ -29,3 +29,5 @@ ggplot(data=d_qua, aes(x=X, y=Y, shape=as.factor(KID))) +
   geom_line(aes(y=p50)) +
   geom_ribbon(aes(ymin=p2.5, ymax=p97.5), alpha=0.3) +
   labs(x='X', y='Y', shape='KID')
+
+#ggsave(p, file='fig8-4-right.png', dpi=300, w=6.3, h=5)
