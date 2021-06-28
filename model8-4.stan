@@ -16,14 +16,21 @@ parameters {
   real<lower=0> s_Y;
 }
 
+transformed parameters {
+  real mu[N];
+  
+  for (n in 1:N) {
+    mu[n] = a[KID[n]] + b[KID[n]]*X[n];
+  }
+}
+
 model {
   for (k in 1:K) {
     a[k] ~ normal(a0, s_a);
     b[k] ~ normal(b0, s_b);
   }
 
-  for (n in 1:N){
-    Y[n] ~ normal(a[KID[n]] + b[KID[n]]*X[n], s_Y);
-  }
+  for (n in 1:N)
+    Y[n] ~ normal(mu[n], s_Y);
 }
 
