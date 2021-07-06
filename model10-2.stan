@@ -24,5 +24,5 @@ transformed parameters {
 
 model {
   for (n in 1:N)
-  Y[n] ~ categorical_logit(softmax(mu[n,]'));
+    Y[n] ~ categorical(softmax(mu[n,]'));
 }
