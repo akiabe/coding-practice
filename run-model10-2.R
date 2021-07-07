@@ -17,7 +17,6 @@ data <- list(
 fit <- stan(
   file='model10-2.stan', 
   data=data, 
-  pars=c('b_raw'), 
   seed=1234
 )
 

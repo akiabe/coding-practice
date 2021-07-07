@@ -17,7 +17,7 @@ parameters {
 
 transformed parameters {
   matrix[D,K] b;
-  matrix[N,K] mu;
+  matrix[N, K] mu;
   b = append_col(Zeros, b_raw);
   mu = X*b;
 }
@@ -25,4 +25,10 @@ transformed parameters {
 model {
   for (n in 1:N)
     Y[n] ~ categorical(softmax(mu[n,]'));
+}
+
+generated quantities {
+  int<lower=1, upper=K> Y_pred[N];
+  for (n in 1:N)
+  Y_pred[n] = categorical_rng(softmax(mu[n,]'));
 }
